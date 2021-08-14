@@ -337,7 +337,20 @@
 
     function get_response_details(){
         $con = $GLOBALS['con'];
-        $query = "SELECT CONCAT(us.first_name,' ',us.last_name) AS 'name', rq.meal_title, rs.status FROM requests AS rq JOIN response AS rs ON rs.request_id=rq.id JOIN users AS us ON rq.requested_by_uid=us.id WHERE rq.status='Opened' ORDER BY rs.status DESC";
+        $query = "SELECT CONCAT(us.first_name,' ',us.last_name) AS 'name', rq.meal_title, rs.status, rs.price FROM requests AS rq JOIN response AS rs ON rs.request_id=rq.id JOIN users AS us ON rq.requested_by_uid=us.id WHERE rq.status='Opened' ORDER BY rs.status DESC";
+        return mysqli_query($con, $query);
+    }
+
+    
+    function get_response_details_per_user($uid){
+        $con = $GLOBALS['con'];
+        $query = "SELECT rs.request_id, CONCAT(us.first_name,' ',us.last_name) AS 'name', rq.meal_title, rs.status, rs.price FROM requests AS rq JOIN response AS rs ON rs.request_id=rq.id JOIN users AS us ON rs.responsed_by_uid=us.id WHERE rs.status='reviewing' AND rq.requested_by_uid=$uid ORDER BY rs.status DESC";
+        return mysqli_query($con, $query);
+    }
+
+    function get_all_meal_details(){
+        $con = $GLOBALS['con'];
+        $query = "SELECT ml.*, us.first_name, us.last_name, us.image AS 'user_image' FROM meal AS ml JOIN users AS us ON ml.uid = us.id";
         return mysqli_query($con, $query);
     }
 

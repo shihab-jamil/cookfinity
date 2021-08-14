@@ -46,43 +46,44 @@
 
 <!-- cards -->
 <div class="row justify-content-center">
-    <?php
-        for($i=0; $i<=10 ; $i++){
-            ?>
-                 <div class="col-md-4">
-                    <div class="card " style="cursor : pointer" onclick="console.log('yes')">
-                        <div class="card-header">
-                            <div class="float-left">
-                                <img src="./dist/img/photo1.png" class="" style="border-radius: 50%;" height="50px" width="50px" alt="">
-                                <label for="" class="ml-2">Alex Benjamin</label>
-                                <!-- <i class="fa fa-location-arrow text-danger" class="ml-2"><small class="text-dark">Baridhara DOHS</small></i> -->
-                            </div> 
-                            <div class="float-right">
-                                <div class="card-footer text-center" style="border-radius: 5% !important; ">
-                                    <i class="fas fa-star text-warning"></i> <span>  4.5(33)</span>
-                                </div>
-                            </div>    
-                        </div>
-                        <div class="card-body p-0">
-                            <img src="./dist/img/photo2.png" class="img-fluid" >
-                        </div>
-                        <div class="card-footer">
-                            <div class="row justify-content-between">
-                                <i class="fas fa-map-marker-alt text-danger" class="ml-2"><small class="text-dark">Baridhara DOHS</small></i>
-                                <i class="fas fa-users text-warning" ><small class="text-dark">15</small></i>
-                                <i class="fas fa-calendar text-info" ><small class="text-dark">12-15 Mar</small></i></i>
-                                <i class="fas fa-clock text-danger" ><small class="text-dark">12-3 PM</small></i>
-                                <i class="fas fa-tags text-primary" aria-hidden="true"><small class="text-dark">430$</small></i>
+  <?php
+    $all_data = get_all_meal_details();
+    while($row = mysqli_fetch_array($all_data)){
+        $date = date_create($row['expire_date']);
+        ?>
+              <div class="col-md-4">
+                <div class="card " style="cursor : pointer"">
+                    <div class="card-header">
+                        <div class="float-left">
+                            <img src="../images/profiles/<?= $row['user_image'] ?>" class="" style="border-radius: 50%;" height="50px" width="50px" alt="">
+                            <label for="" class="ml-2"><?= $row['first_name']." ".$row['last_name'] ?></label>
+                            <!-- <i class="fa fa-location-arrow text-danger" class="ml-2"><small class="text-dark">Baridhara DOHS</small></i> -->
+                        </div> 
+                        <div class="float-right">
+                            <div class="card-footer text-center" style="border-radius: 5% !important; ">
+                                <i class="fas fa-star text-warning"></i> <span>  4.5(33)</span>
                             </div>
-                            <div class="row mt-2">
-                                <label for="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, id?</label>
-                            </div>
+                        </div>    
+                    </div>
+                    <div class="card-body p-0">
+                        <img src="../images/meals/<?= $row['image'] ?>" class="" height="250px" width="400px">
+                    </div>
+                    <div class="card-footer">
+                        <div class="row justify-content-between">
+                            <i class="fas fa-users text-warning" ><small class="text-dark"><?= $row['quantity'] ?></small></i>
+                            <i class="fas fa-calendar text-info" ><small class="text-dark"><?= date_format($date, 'd M') ?></small></i></i>
+                            <i class="fas fa-clock text-danger" ><small class="text-dark"><?= $row['available_from']."-".$row['available_till'] ?></small></i>
+                            <i class="fas fa-tags text-primary" aria-hidden="true"><small class="text-dark"><?= $row['price']."৳" ?></small></i>
+                        </div>
+                        <div class="row mt-2">
+                            <label for=""><?= $row['description'] ?></label>
                         </div>
                     </div>
                 </div>
-            <?php
-        }
-    ?>
+            </div>
+        <?php
+    }
+  ?>
    
 </div>
 <!-- /.cards -->

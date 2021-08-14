@@ -1,10 +1,19 @@
 <?php
   require_once('../config.php');
   require_once('./pages/modals.php');
-  $_SESSION['uid'] = 1;
+
+  if(!isset($_SESSION['email'])){
+    header('location: ../index.php');
+  }
+
   $uid = $_SESSION['uid'];
   $user_details = get_single_table_record('users', 'id', $uid);
   $user_name = get_user_name_by_id($uid);
+
+  if(isset($_GET['logout'])){
+    session_destroy();
+    header('location: ../index.php');
+  }
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="./?logout" class="nav-link">
               <i class="nav-icon fas fa-arrow-left"></i>
               <p>Logout</p>
             </a>
