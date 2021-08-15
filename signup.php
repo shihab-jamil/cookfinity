@@ -15,10 +15,10 @@
     
     <?php include './header.php'; ?>
     <div class="container mt-5">
-        <h3 class="text-center ">Become a cook</h3>
-        <div class="row ">
+        <h3 class="text-center">Register a user</h3>
+        <div class="row">
             <div class="col-6 offset-3">
-                <form action="./register_homecook_db.php" method="POST" enctype="multipart/form-data">
+                <form action="./register_consumer_db.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
