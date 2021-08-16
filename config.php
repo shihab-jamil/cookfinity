@@ -179,6 +179,12 @@
                 return $result['COUNT(*)'];
                 break;
             
+            case 'meals':
+                $query = "SELECT COUNT(*) FROM meal ";
+                $result = mysqli_fetch_array(mysqli_query($con, $query));
+                return $result['COUNT(*)'];
+                break;
+            
             case 'active_requests':
                 $query = "SELECT COUNT(*) FROM requests WHERE `status`= 'opened'";
                 $result = mysqli_fetch_array(mysqli_query($con, $query));

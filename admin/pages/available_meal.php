@@ -25,7 +25,7 @@
           <span class="info-box-icon bg-info"><i class="fa fa-cogs"></i></span>                
           <div class="info-box-content">
             <span class="info-box-text">Meals </span>
-            <span class="info-box-number" ><?= count_badges('consumer') ?></span>
+            <span class="info-box-number" ><?= count_badges('meals') ?></span>
           </div>
         </div>
       </div>
